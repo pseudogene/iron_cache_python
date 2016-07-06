@@ -195,3 +195,35 @@ class IronCache:
         amount = amount * -1
 
         return self.increment(key=key, cache=cache, amount=amount)
+
+    def clear(self, cache=None):
+        """Query the server to clear the specified cache
+        Keyword arguments:
+        cache -- the name of the cache to clear. Defaults to None,
+                 which uses self.name. If no name is set, raises a
+                 ValueError.
+        """
+        if cache is None:
+            cache = self.name
+        if cache is None:
+            raise ValueError("Cache name must be set")
+        cache = quote_plus(cache)
+        url = "caches/%s/clear" % (cache)
+        self.client.post(url)
+        return True
+
+    def remove(self, cache=None):
+        """Query the server to delete the specified cache
+        Keyword arguments:
+        cache -- the name of the cache to delete. Defaults to None,
+                 which uses self.name. If no name is set, raises a
+                 ValueError.
+        """
+        if cache is None:
+            cache = self.name
+        if cache is None:
+            raise ValueError("Cache name must be set")
+        cache = quote_plus(cache)
+        url = "caches/%s" % (cache)
+        self.client.delete(url)
+        return True

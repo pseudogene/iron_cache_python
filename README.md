@@ -45,7 +45,7 @@ item = cache.put(cache="test_cache", key="mykey", value="Hello IronCache!")
 print item.value
 ```
 
-### Get an Item In the Cache
+### Get an Item From the Cache
 
 ```python
 from iron_cache import *
@@ -75,6 +75,30 @@ from iron_cache import *
 cache = IronCache()
 try:
     cache.delete(cache="test_cache", key="mykey")
+except:
+   pass
+```
+
+### Clear the Cache
+
+```python
+from iron_cache import *
+
+cache = IronCache()
+try:
+    cache.clear(cache="test_cache")
+except:
+   pass
+```
+
+### Delete the Cache
+
+```python
+from iron_cache import *
+
+cache = IronCache()
+try:
+    cache.remove(cache="test_cache")
 except:
    pass
 ```
